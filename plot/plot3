@@ -1,3 +1,5 @@
+install.packages("ggplot2")
+library(ggplot2)
 df <- data.frame(
   metric = c("Both incorrect", "Multiagent-assisted incorrect", "Human only incorrect"),
   estimate = c(11.6, 62.1, 37.9)
