@@ -1,0 +1,23 @@
+install.packages("binom")
+library(binom)
+# 1. Values extracted from the results of tab in the confusion matrix.
+TP <- 3532
+FP <- 326
+FN <- 151
+TN <- 13035
+total <- TP + FP + FN + TN
+# 2. 计算 Clopper-Pearson 置信区间 (method = "exact")
+# Sensitivity = TP / (TP + FN)
+sens_res <- binom.confint(TP, TP + FN, methods = "exact")
+# 特异性 (Specificity) = TN / (TN + FP)
+spec_res <- binom.confint(TN, TN + FP, methods = "exact")
+# 准确度 (Accuracy) = (TP + TN) / Total
+acc_res <- binom.confint(TP + TN, total, methods = "exact")
+# 3. 整合结果表格
+final_results <- data.frame(
+Metric = c("Sensitivity", "Specificity", "Accuracy"),
+Estimate = c(sens_res$mean, spec_res$mean, acc_res$mean),
+Lower_CI = c(sens_res$lower, spec_res$lower, acc_res$lower),
+Upper_CI = c(sens_res$upper, spec_res$upper, acc_res$upper)
+)
+print(final_results)
