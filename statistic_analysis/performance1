@@ -6,14 +6,14 @@ FP <- 326
 FN <- 151
 TN <- 13035
 total <- TP + FP + FN + TN
-# 2. 计算 Clopper-Pearson 置信区间 (method = "exact")
+# 2. Calculate the Clopper-Pearson confidence interval (method = "exact")
 # Sensitivity = TP / (TP + FN)
 sens_res <- binom.confint(TP, TP + FN, methods = "exact")
-# 特异性 (Specificity) = TN / (TN + FP)
+# Specificity = TN / (TN + FP)
 spec_res <- binom.confint(TN, TN + FP, methods = "exact")
-# 准确度 (Accuracy) = (TP + TN) / Total
+# Accuracy = (TP + TN) / Total
 acc_res <- binom.confint(TP + TN, total, methods = "exact")
-# 3. 整合结果表格
+# 3. Integrated results table
 final_results <- data.frame(
 Metric = c("Sensitivity", "Specificity", "Accuracy"),
 Estimate = c(sens_res$mean, spec_res$mean, acc_res$mean),
