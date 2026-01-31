@@ -1,0 +1,47 @@
+df <- data.frame(
+  metric = c("Both incorrect", "Multiagent-assisted incorrect", "Human only incorrect"),
+  estimate = c(11.6, 62.1, 37.9)
+)
+fill_colors <- c(
+  "Human only incorrect" = "#2a9d8f",
+  "Multiagent-assisted incorrect" = "#7fb3b5",
+  "Both incorrect" = "#d9e6e6"
+)
+ggplot(df, aes(
+  x = estimate,
+  y = factor(metric, levels = metric)
+)) +
+  geom_col(
+    aes(fill = metric),
+    width = 0.6,
+    color = "black",
+    linewidth = 0.3
+  ) +
+  geom_text(
+    aes(
+      x = estimate / 2,
+      label = sprintf("%.1f%%", estimate)
+    ),
+    color = "black",
+    size = 3.5,
+    fontface = "bold",
+    hjust = 0.5
+  ) +
+  scale_fill_manual(values = fill_colors) +
+  scale_x_continuous(
+    limits = c(0, 65),
+    breaks = seq(0, 60, by = 20),
+    expand = c(0, 0)
+  ) +
+  labs(x = "Percentage (%)", y = NULL) +
+  theme_classic(base_size = 12) +
+  theme(
+    legend.position = "none",
+    axis.line = element_line(linewidth = 0.3, color = "black"),
+    axis.ticks = element_line(linewidth = 0.3, color = "black"),
+    axis.ticks.length = unit(0.2, "cm"),
+    axis.text.y = element_text(color = "black", face = "bold", size = 12),
+    axis.text.x = element_text(color = "black", face = "bold", size = 12),
+    axis.title.x = element_text(face = "bold", size = 12, margin = margin(t = 15)),
+    plot.margin = margin(20, 40, 20, 20)
+  )
