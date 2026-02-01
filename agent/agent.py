@@ -125,7 +125,7 @@ def usage_or_zero(res: Any, fields: list[str]) -> int:
 
 
 async def run_agent(agent: Agent, content: str) -> Tuple[Any, float]:
-    """运行 agent 并返回结果和实际处理时间（不包括等待信号量的时间）"""
+    """Run the agent and return the result and the actual processing time (excluding the time spent waiting for the semaphore)"""
     async with sem:
         t_start = time.monotonic()
         result = await Runner.run(agent, content)
@@ -134,12 +134,12 @@ async def run_agent(agent: Agent, content: str) -> Tuple[Any, float]:
 
 
 async def process_row(row: list[str]) -> dict:
-    """处理单行数据"""
+    """Process single-row data"""
     paper_id, title, abstract = row[0], row[1], row[2]
     text = f"ID: {paper_id}\nTitle: {title}\nAbstract: {abstract}"
 
     with trace(f"paper-{paper_id}"):
-        # 运行三个 agent
+        # Run three agents
         acu_res, latency_agent1 = await run_agent(acupuncture_agent, text)
         rct_res, latency_agent2 = await run_agent(rct_agent, text)
         
@@ -150,10 +150,10 @@ async def process_row(row: list[str]) -> dict:
         )
         coord_res, latency_agent3 = await run_agent(coordinator_agent, coord_input)
     
-    # 计算总处理时间（三个 agent 实际处理时间之和）
+    # Calculate the total processing time (the sum of the actual processing times of the three agents)
     latency_total = round(latency_agent1 + latency_agent2 + latency_agent3, 3)
     
-    # 提取 token 信息
+    # Extract token information
     results = [acu_res, rct_res, coord_res]
     total_tokens = sum(usage_or_zero(r, ["total_tokens"]) for r in results)
     completion_tokens = sum(usage_or_zero(r, ["output_tokens", "completion_tokens"]) for r in results)
@@ -177,35 +177,35 @@ async def process_row(row: list[str]) -> dict:
 
 
 async def main():
-    """主函数"""
-    desktop_path = os.path.expanduser("~/Desktop/1111.csv")
-    out_path = os.path.expanduser("~/Desktop/papers_results.csv")
+    """Main function"""
+    desktop_path = os.path.expanduser("~/Desktop/1111.csv")#File reading path
+    out_path = os.path.expanduser("~/Desktop/papers_results.csv")#File output path
     
-    # 读取数据
-    print(f"正在读取文件: {desktop_path}")
+    # Read data
+    print(f"Reading the file: {desktop_path}")
     tasks = []
     
     with open(desktop_path, newline="", encoding="utf-8") as f:
         reader = csv.reader(f)
         first_row = next(reader, None)
         
-        # 检查并跳过表头
+        # Check and skip the header
         if first_row and any(cell.lower() in ("id", "title", "abstract") for cell in first_row):
-            print("检测到表头，已跳过")
+            print("The header has been detected and skipped")
         elif first_row:
             tasks.append(process_row(first_row))
         
-        # 添加剩余行
+        # Add the remaining lines
         for row in reader:
             if len(row) >= 3:
                 tasks.append(process_row(row))
     
-    print(f"共 {len(tasks)} 条数据待处理，开始处理...")
+    print(f"total {len(tasks)} a piece of data is pending processing. Start processing...")
     
-    # 并发处理所有任务
+    # Handle all tasks concurrently
     results = await asyncio.gather(*tasks)
     
-    # 写入结果
+    # Write the result
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -222,12 +222,12 @@ async def main():
                 r["prompt_tokens"], r["completion_tokens"], r["total_tokens"],
             ])
     
-    # 打印统计信息
-    print(f"\n处理完成！已输出结果至: {out_path}")
-    print(f"\nToken 使用统计:")
-    print(f"  总 prompt tokens: {sum(r['prompt_tokens'] for r in results):,}")
-    print(f"  总 completion tokens: {sum(r['completion_tokens'] for r in results):,}")
-    print(f"  总 tokens: {sum(r['total_tokens'] for r in results):,}")
+    # Print statistical information
+    print(f"\nProcessing completed! The result has been output to: {out_path}")
+    print(f"\nToken Use statistics:")
+    print(f"  total prompt tokens: {sum(r['prompt_tokens'] for r in results):,}")
+    print(f"  total completion tokens: {sum(r['completion_tokens'] for r in results):,}")
+    print(f"  total tokens: {sum(r['total_tokens'] for r in results):,}")
 
 
 if __name__ == "__main__":
