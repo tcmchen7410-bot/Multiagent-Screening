@@ -19,3 +19,4 @@ Set the path of the CSV file to be read and the path of the input result in line
 ```bash
 python3 ~/Desktop/agent.py
 ```
+## Statistical analysis
