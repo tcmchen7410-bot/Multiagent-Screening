@@ -1,7 +1,7 @@
 # Multiagent-Screening
 This is a multi-agent approach for screening citations of randomized controlled trials on acupuncture.
 
-We have made public the script for the multi-agent interaction with ChatGpt as well as all the statistical analysis scripts. Our dataset consists of 300 citations from the pretesting stage. Once the paper is officially accepted, we will make the complete dataset publicly available.
+The multi-agent framework is built based on the OpenAI SDK framework. We have made public the script for the multi-agent interaction with ChatGpt as well as all the statistical analysis scripts. Our dataset consists of 300 citations from the pretesting stage. Once the paper is officially accepted, we will make the complete dataset publicly available.
 
 ## Running the script
 1. Set up your Python environment
