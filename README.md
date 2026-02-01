@@ -19,7 +19,10 @@ Set the path of the CSV file to be read and the path of the input result in line
 ```bash
 python3 ~/Desktop/agent.py
 ```
+5. Results
+结果在results-sample_size_results.csv获取。
 ## Statistical analysis
+1. 统计分析
 ```smple (300).R```是从17044引种随机抽取300条引文用于pretesting。结果在results-sample (300).csv获取
 
 ```Confusion Matrix.R```用于统计True positives (TP), true negatives (TN), false positives (FP), false negatives (FN)的数量，读取的CSV文件是：results-statistic_analysis.csv
@@ -32,5 +35,11 @@ python3 ~/Desktop/agent.py
 
 ```fleiss_kappa.R```用于计算5%的引文的一致性，读取的CSV文件是：results-kappa.csv
 
-```mean_sd.R```用于计算均数加减标准差
+```mean_sd.R```用于计算均数加减标准差，读取的CSV文件是：results-statistic_analysis.csv
+2. Plot
+```plot1.R```用于绘制敏感度，特异性，准确度、F1指数的柱状图，脚本的data.frame从```performance1.R```，```performance2.R```运行结果中获取
+
+```plot2.R```用于绘制不同agent的一致性的柱状图，脚本的data.frame从```fleiss_kappa.R```运行结果中获取
+
+```plot2.R```用于绘制错误情况的柱状图
 
