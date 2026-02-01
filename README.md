@@ -1,8 +1,15 @@
 # Multiagent-Screening
 This is a multi-agent approach for screening citations of randomized controlled trials on acupuncture.
 ## Installation
-
-```bash
+# Create virtual environment
 python -m venv .venv
-source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+
+# Activate the virtual environment
+# macOS / Linux
+source .venv/bin/activate
+
+# Windows
+.venv\Scripts\activate
+
+# Install dependencies
 pip install openai-agents
