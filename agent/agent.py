@@ -178,7 +178,7 @@ async def process_row(row: list[str]) -> dict:
 
 async def main():
     """Main function"""
-    desktop_path = os.path.expanduser("~/Desktop/1111.csv")#File reading path
+    desktop_path = os.path.expanduser("~/Desktop/sample_size.csv")#File reading path
     out_path = os.path.expanduser("~/Desktop/papers_results.csv")#File output path
     
     # Read data
