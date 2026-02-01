@@ -21,6 +21,9 @@ Set the path of the CSV file to be read and the path of the input result in line
 ```bash
 python3 ~/Desktop/agent.py
 ```
+Note！！！！
+
+If a corresponding delay is prompted, it usually does not affect the running result, but it will affect the running speed. Therefore, we suggest running the script in a stable network environment.
 5. Results
 Results can be found in ```results-sample_size_results.csv```.
 ## Statistical analysis
