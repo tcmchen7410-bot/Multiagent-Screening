@@ -23,23 +23,26 @@ python3 ~/Desktop/agent.py
 结果在results-sample_size_results.csv获取。
 ## Statistical analysis
 1. 统计分析
-```smple (300).R```是从17044引种随机抽取300条引文用于pretesting。结果在results-sample (300).csv获取
 
-```Confusion Matrix.R```用于统计True positives (TP), true negatives (TN), false positives (FP), false negatives (FN)的数量，读取的CSV文件是：results-statistic_analysis.csv
+①```smple (300).R```是从17044引种随机抽取300条引文用于pretesting。结果在results-sample (300).csv获取
 
-```performance1.R```用于计算敏感度，特异性，准确度及其95% CI。TP, TN, FP, FN可以从```Confusion Matrix.R```运行结果获取
+②```Confusion Matrix.R```用于统计True positives (TP), true negatives (TN), false positives (FP), false negatives (FN)的数量，读取的CSV文件是：results-statistic_analysis.csv
 
-```performance2.R```用于计算F1 score及其95% CI。TP, TN, FP, FN可以从```Confusion Matrix.R```运行结果获取
+③```performance1.R```用于计算敏感度，特异性，准确度及其95% CI。TP, TN, FP, FN可以从```Confusion Matrix.R```运行结果获取
 
-```sample (852).R```是从17044引种随机抽取5%的引文（852条）用于稳定性的计算。结果在results-sample (852).csv获取
+④```performance2.R```用于计算F1 score及其95% CI。TP, TN, FP, FN可以从```Confusion Matrix.R```运行结果获取
 
-```fleiss_kappa.R```用于计算5%的引文的一致性，读取的CSV文件是：results-kappa.csv
+⑤```sample (852).R```是从17044引种随机抽取5%的引文（852条）用于稳定性的计算。结果在results-sample (852).csv获取
 
-```mean_sd.R```用于计算均数加减标准差，读取的CSV文件是：results-statistic_analysis.csv
+⑥```fleiss_kappa.R```用于计算5%的引文的一致性，读取的CSV文件是：results-kappa.csv
+
+⑦```mean_sd.R```用于计算均数加减标准差，读取的CSV文件是：results-statistic_analysis.csv
+
 2. Plot
-```plot1.R```用于绘制敏感度，特异性，准确度、F1指数的柱状图，脚本的data.frame从```performance1.R```，```performance2.R```运行结果中获取
 
-```plot2.R```用于绘制不同agent的一致性的柱状图，脚本的data.frame从```fleiss_kappa.R```运行结果中获取
+①```plot1.R```用于绘制敏感度，特异性，准确度、F1指数的柱状图，脚本的data.frame从```performance1.R```，```performance2.R```运行结果中获取
 
-```plot2.R```用于绘制错误情况的柱状图
+②```plot2.R```用于绘制不同agent的一致性的柱状图，脚本的data.frame从```fleiss_kappa.R```运行结果中获取
+
+③```plot2.R```用于绘制错误情况的柱状图
 
