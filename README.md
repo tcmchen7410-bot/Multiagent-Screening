@@ -1,12 +1,16 @@
 # Multiagent-Screening
 This is a multi-agent approach for screening citations of randomized controlled trials on acupuncture.
+
+We have made public the script for the multi-agent interaction with ChatGpt as well as all the statistical analysis scripts. Our dataset consists of 300 citations from the pretesting stage. Once the paper is officially accepted, we will make the complete dataset publicly available.
+
 ## Running the script
 1. Set up your Python environment
 
 Python 3.12.10 or newer required. Then, install OpenAI Agents SDK package.
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate
+# On Windows: .venv\Scripts\activate
 pip install openai-agents
 ```
 2. Set the API Key in the Terminal
@@ -24,7 +28,9 @@ python3 ~/Desktop/agent.py
 Note！！！！
 
 If a corresponding delay is prompted, it usually does not affect the running result, but it will affect the running speed. Therefore, we suggest running the script in a stable network environment.
+
 5. Results
+   
 Results can be found in ```results-sample_size_results.csv```.
 ## Statistical analysis
 1. Statistical analysis
