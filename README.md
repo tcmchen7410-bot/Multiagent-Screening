@@ -13,3 +13,4 @@ export OPENAI_API_KEY="YOUR API_KEY"
 ```
 3. ```agent.py```在181，182行设置需要读取的CSV文件的路径，已经输入结果的路径
 4. 在终端运行```agent.py```
+```python3 ~/Desktop/agent.py```
