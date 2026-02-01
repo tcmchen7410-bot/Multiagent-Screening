@@ -1,7 +1,9 @@
 # Multiagent-Screening
 This is a multi-agent approach for screening citations of randomized controlled trials on acupuncture.
 ## Running the script
-1. Set up your Python environment (requires Python 3.12.10 or newer required). Then, install OpenAI Agents SDK package.
+1. Set up your Python environment
+
+Python 3.12.10 or newer required. Then, install OpenAI Agents SDK package.
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
