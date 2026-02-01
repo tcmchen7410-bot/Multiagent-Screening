@@ -15,7 +15,7 @@ export OPENAI_API_KEY="YOUR API_KEY"
 ```
 3. Set the script
 
-Set the path of the CSV file to be read and the path of the input result in lines 181 and 182 of ```agent.py```. The CSV file in the script is in  ```dataset-sample_size.csv```. The script is in the ```agent-agent.py```.
+Set the path of the CSV file to be read and the path of the input result in lines 181 and 182 of ```agent.py```. The CSV file in the script is in  ```dataset-sample_size.csv```. The    script is in the ```agent-agent.py```.
 
 4. Run ```agent.py``` in the terminal
 ```bash
